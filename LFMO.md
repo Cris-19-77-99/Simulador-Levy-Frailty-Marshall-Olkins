@@ -1,8 +1,6 @@
-# LFMO: simulación y optimización de políticas de mantenimiento
+# LFMO para simulación y optimización de políticas de mantenimiento
 
-Este repositorio reúne una implementación en Julia de un modelo **LFMO** para sistemas multicomponente con fallas dependientes y simultáneas.
-
-El objetivo es representar una red cuyos componentes pueden fallar de forma conjunta, construir el MDP asociado y obtener políticas de mantenimiento mediante el algoritmo SAVIA.
+Implementación en Julia de un modelo de reparaciones de mantenimiento con donde los tiempos de vidas siguen una distribución **Levy Frailty Marshall Olkins**, enfocado en sistemas multicomponente con fallas dependientes y simultáneas. Se representa una red cuyos componentes pueden fallar de forma conjunta, construye el MDP asociado y se obtiene políticas de mantenimiento mediante el algoritmo SAVIA.
 
 ## Archivos
 
@@ -27,50 +25,6 @@ Política de mantenimiento
 SimLFMO.jl
       ↓
 Evaluación por simulación
-```
-
-## Dependencias
-
-```julia
-using Pkg
-
-Pkg.add([
-    "StatsBase",
-    "Distributions",
-    "JLD2"
-])
-```
-
-## Uso básico
-
-```julia
-include("RunPolicy.jl")
-using .RunPolicy
-
-EDGES = [
-    (1, 2),
-    (1, 3),
-    (2, 4),
-    (3, 4)
-]
-
-resultado = obtener_politica_red(
-    EDGES,
-    1,
-    4,
-    true;
-    μ = 1.0,
-    λ = 0.4,
-    γ = 0.4,
-    η_factor = 0.9,
-    Cc = 0.3,
-    fact_Cs = 1.0,
-    ε = 0.05,
-    δ = 0.1,
-    max_it = 10
-)
-
-politica = resultado.πₒ
 ```
 
 Las acciones se representan como:
