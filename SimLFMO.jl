@@ -12,29 +12,6 @@ export simular_sistema_red,
        mc_policy_red,
        cargar_politica_txt
 
-
-"""
-    simular_sistema_red(
-        politica,
-        EDGES,
-        s_src,
-        t_dst,
-        directed,
-        μ,
-        λ,
-        γ,
-        Cc,
-        fact_Cs,
-        horizonte;
-        semilla=nothing
-    )
-
-Simula una red sometida a fallas dependientes generadas por un modelo LFMO.
-
-La política debe ser un diccionario que asocie cada estado de la red con
-`"R"` (reparar) o `"NR"` (no reparar). Las reparaciones correctivas y
-preventivas reinician el sistema y determinan el final de un ciclo.
-"""
 function simular_sistema_red(
     politica,
     EDGES,
@@ -255,24 +232,6 @@ function simular_sistema_red(
 end
 
 
-"""
-    simular_red(
-        politica,
-        EDGES,
-        s_src,
-        t_dst,
-        directed;
-        μ=1.0,
-        λ=0.4,
-        γ=0.4,
-        Cc=0.3,
-        fact_Cs=1.0,
-        H=1000.0,
-        seed=nothing
-    )
-
-Ejecuta una simulación y devuelve únicamente las métricas principales.
-"""
 function simular_red(
     politica,
     EDGES,
@@ -312,11 +271,6 @@ function simular_red(
 end
 
 
-"""
-    mean_ci95(v)
-
-Calcula la media y un intervalo de confianza normal aproximado del 95 %.
-"""
 function mean_ci95(v)
 
     n = length(v)
@@ -348,19 +302,6 @@ function mean_ci95(v)
 end
 
 
-"""
-    mc_policy_red(
-        politica,
-        EDGES,
-        s_src,
-        t_dst,
-        directed;
-        R=200,
-        pars...
-    )
-
-Evalúa una política mediante `R` réplicas Monte Carlo.
-"""
 function mc_policy_red(
     politica,
     EDGES,
@@ -416,13 +357,6 @@ function mc_policy_red(
 end
 
 
-"""
-    cargar_politica_txt(filename)
-
-Carga una política almacenada en líneas de la forma:
-
-`1,0,1 => R`
-"""
 function cargar_politica_txt(filename)
 
     politica = Dict{Tuple{Vararg{Int}}, String}()
